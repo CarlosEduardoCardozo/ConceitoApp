@@ -1,19 +1,22 @@
 import React from 'react';
-import {] View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+// import ProductDetailsScreen from './ProductDetailsScreen';
 
 const products = [
-    { id: 1, title: 'Product 1', price: 'R$49.99', image: 'https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png' },
-    { id: 2, title: 'Product 2', price: 'R$49.99', image: 'https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274' },
-    { id: 3, title: 'Product 3', price: 'R$54.99', image: 'https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg' },
+    { id: 1, title: 'Arabic', price: 'R$49.99', image: 'https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png' },
+    { id: 2, title: 'High', price: 'R$49.99', image: 'https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274' },
+    { id: 3, title: 'High', price: 'R$54.99', image: 'https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg' },
 ];
 
 const ProductCarousel = () => {
     const renderItem = ({ item }) => (
         <View style={styles.productCard}>
+            <TouchableOpacity style={styles.brandItem} onPress={() => navigation.navigate('ProductDetails', { id: item.id, title: item.title, price: item.price, image: item.image })}>
             <Image source={{ uri: item.image }} style={styles.productImage} />
             <Text style={styles.productTitle}>{item.title}</Text>
             <Text style={styles.productPrice}>{item.price}</Text>
+    </TouchableOpacity>
         </View>
     );
 

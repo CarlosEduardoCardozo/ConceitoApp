@@ -27,7 +27,7 @@ const BrandCarousel = () => {
             } else {
                 carouselRef.current.snapToItem(0);
             }
-        }, 2000); // Move to the next brand every 3 seconds
+        }, 2000); 
 
         return () => clearInterval(timer);
     }, [currentIndex]);
@@ -39,7 +39,7 @@ const BrandCarousel = () => {
                 data={brands}
                 renderItem={renderItem}
                 sliderWidth={Dimensions.get('window').width}
-                itemWidth={80} // Adjust the width of each brand item
+                itemWidth={80} 
                 onSnapToItem={(index) => setCurrentIndex(index)}
                 loop={true}
                 autoplay={false}
@@ -50,7 +50,7 @@ const BrandCarousel = () => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 80, // Adjust the height of the carousel
+        height: 80, 
         paddingHorizontal: 10,
     },
     brandItem: {
