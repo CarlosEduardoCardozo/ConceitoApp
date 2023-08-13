@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import {] View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
 const products = [
