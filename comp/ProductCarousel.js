@@ -9,7 +9,7 @@ const products = [
     { id: 3, title: 'High', price: 'R$54.99', image: 'https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg' },
 ];
 
-const ProductCarousel = () => {
+const ProductCarousel = ({navigation}) => {
     const renderItem = ({ item }) => (
         <View style={styles.productCard}>
             <TouchableOpacity style={styles.brandItem} onPress={() => navigation.navigate('ProductDetails', { id: item.id, title: item.title, price: item.price, image: item.image })}>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     productImage: {
-        width: 300, // Set the width to match the itemWidth
+        width: 300, 
         width: 200,
         height: 180,
     },
