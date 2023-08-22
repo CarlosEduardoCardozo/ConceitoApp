@@ -13,10 +13,10 @@ const ProductCarousel = ({navigation}) => {
     const renderItem = ({ item }) => (
         <View style={styles.productCard}>
             <TouchableOpacity style={styles.brandItem} onPress={() => navigation.navigate('ProductDetails', { id: item.id, title: item.title, price: item.price, image: item.image })}>
-            <Image source={{ uri: item.image }} style={styles.productImage} />
-            <Text style={styles.productTitle}>{item.title}</Text>
-            <Text style={styles.productPrice}>{item.price}</Text>
-    </TouchableOpacity>
+                <Image source={{ uri: item.image }} style={styles.productImage} />
+                <Text style={styles.productTitle}>{item.title}</Text>
+                <Text style={styles.productPrice}>{item.price}</Text>
+            </TouchableOpacity>
         </View>
     );
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
     },
-    
+        
     productCard: {
         backgroundColor: '#fff',
         borderRadius: 10,
@@ -57,11 +57,13 @@ const styles = StyleSheet.create({
         width: 300, 
         width: 200,
         height: 180,
+        
     },
     productTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
+        
     },
     productPrice: {
         fontSize: 14,
