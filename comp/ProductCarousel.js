@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   View,
   Text,
@@ -10,44 +11,63 @@ import {
 import Carousel from "react-native-snap-carousel";
 // import ProductDetailsScreen from './ProductDetailsScreen';
 
-const products = [
-  {
-    id: 1,
-    title: "Arabic",
-    price: "R$49.99",
-    image:
-      "https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png",
-  },
-  {
-    id: 2,
-    title: "High",
-    price: "R$49.99",
-    image:
-      "https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274",
-  },
-  {
-    id: 3,
-    title: "High",
-    price: "R$54.99",
-    image:
-      "https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg",
-  },
-];
+import camisetaService from './src/services/camisetas';
+import { useEffect, useState } from 'react';
+
+
+function ProductCarousel() {
+  const [camisetas, setCamisetas] = useState([]);
+
+  useEffect(async () => {
+    const data = await camisetaService.getAllCamisetas();
+    setCamisetas(data);
+  }, []);
+
+
+
+// const products = [
+//   {
+//     id: 1,
+//     title: "Arabic",
+//     price: "R$49.99",
+//     image:
+//       "https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png",
+//   },
+//   {
+//     id: 2,
+//     title: "High",
+//     price: "R$49.99",
+//     image:
+//       "https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274",
+//   },
+//   {
+//     id: 3,
+//     title: "High",
+//     price: "R$54.99",
+//     image:
+//       "https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg",
+//   },
+// ];
 
 const ProductCarousel = ({ navigation }) => {
   const renderItem = ({ item }) => (
-    <View style={styles.productCard}>
-      <TouchableOpacity
-        style={styles.brandItem}
-        onPress={() =>
-          navigation.navigate("ProductDetails", {
-            id: item.id, title: item.title,price: item.price,image: item.image,})} >
-        <Image source={{ uri: item.image }} style={styles.productImage} />
-        <View style={styles.titlegeral}>
-        <Text style={styles.productTitle}>{item.title}</Text>
-        <Text style={styles.productPrice}>{item.price}</Text>
-        </View>
-      </TouchableOpacity>
+    
+    // <View style={styles.productCard}>
+    //   <TouchableOpacity
+    //     style={styles.brandItem}
+    //     onPress={() =>
+    //       navigation.navigate("ProductDetails", {
+    //         id: item.id, title: item.title,price: item.price,image: item.image,})} >
+    //     <Image source={{ uri: item.image }} style={styles.productImage} />
+    //     <View style={styles.titlegeral}>
+    //     <Text style={styles.productTitle}>{item.nome}</Text>
+    //     <Text style={styles.productPrice}>{item.price}</Text>
+    //     </View>
+    //   </TouchableOpacity>
+    <View>
+      {camisetas.map((camiseta) => (
+        <Text key={camiseta.id}>{camiseta.nome}</Text>
+      ))}
     </View>
   );
 
@@ -110,5 +130,5 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 });
-
+}
 export default ProductCarousel;

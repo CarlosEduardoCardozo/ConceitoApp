@@ -14,6 +14,7 @@ const ProductDetailsScreen = ({ route }) => {
         <View style={styles.descricao}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.details}>{price}</Text>
+        
         </View>
       </View>
   </View>    

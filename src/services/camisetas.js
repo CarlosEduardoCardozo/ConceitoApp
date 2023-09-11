@@ -5,3 +5,5 @@ class CamisetaService {
         const response = await api.get('/camisetas/')
     }
 }
+
+export default new CamisetaService()
