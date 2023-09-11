@@ -6,7 +6,6 @@ import Navbar from "./comp/Navbar";
 import ProductCarousel from "./comp/ProductCarousel";
 import BrandCarousel from "./comp/BrandCarousel";
 import ProductDetailsScreen from "./comp/ProductDetailsScreen";
-// import Cardgeral from "./comp/CardAbaixo";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +17,6 @@ const HomeScreen = ({navigation}) => {''
       <Navbar />
       <ProductCarousel navigation={navigation}/>
       <BrandCarousel />
-      {/* <Cardgeral /> */}
     </View>
   );
 };
