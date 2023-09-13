@@ -113,7 +113,7 @@ function ProductCarousel({navigation}) {
             id: camiseta.id, title: camiseta.nome, price: camiseta.valor,image: camiseta.image,})} >
 
 
-        <Image source={{ uri: camiseta.image }} style={styles.productImage} />
+        <Image source={{ uri: 'https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg' }} style={styles.productImage} />
         <View style={styles.titlegeral}>
         <Text style={styles.productTitle}>{camiseta.nome}</Text>
         <Text style={styles.productPrice}>{camiseta.valor}</Text>
