@@ -4,16 +4,17 @@ import Navbar from "./Navbar";
 
 
 const ProductDetailsScreen = ({ route }) => {
-  const { title, price, image } = route.params;
+  const { title, price, image, descricao } = route.params;
 
   return (
   <View>
     <Navbar/>
       <View style={styles.container}>
-        <Image source={{ uri: image }} style={styles.image} />
+        <Image source={{ uri: 'https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png' }} style={styles.image} />
         <View style={styles.descricao}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.details}>{price}</Text>
+        <Text style={styles.descricaoimg}>{descricao}</Text>
         
         </View>
       </View>
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
       descricao: {
         alignItems: 'center',
       },
+      
       title: {
         fontSize: 20,
         fontWeight: 'bold',

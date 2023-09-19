@@ -11,126 +11,76 @@ import {
 import Carousel from "react-native-snap-carousel";
 // import ProductDetailsScreen from './ProductDetailsScreen';
 
-import camisetaService from '../src/services/camisetas.js';
+import camisetaService from "../src/services/camisetas.js";
 
-// async function ProductCarousel() {
-//   const [camisetas, setCamisetas] = useState([]);
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       const data = await axios.get("http://127.0.0.1:8000/api/camisetas/")
-//       // setComments(data);
-//       console.log(data)
-//     }
-//     fetchData();
-//   }, []);
-
-// // const products = [
-// //   {
-// //     id: 1,
-// //     title: "Arabic",
-// //     price: "R$49.99",
-// //     image:
-// //       "https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png",
-// //   },
-// //   {
-// //     id: 2,
-// //     title: "High",
-// //     price: "R$49.99",
-// //     image:
-// //       "https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274",
-// //   },
-// //   {
-// //     id: 3,
-// //     title: "High",
-// //     price: "R$54.99",
-// //     image:
-// //       "https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg",
-// //   },
-// // ];
-
-// const ProductCarousel = ({ navigation }) => {
-//   const renderItem = ({ item }) => (
-    
-    // <View style={styles.productCard}>
-    //   <TouchableOpacity
-    //     style={styles.brandItem}
-    //     onPress={() =>
-    //       navigation.navigate("ProductDetails", {
-    //         id: item.id, title: item.title,price: item.price,image: item.image,})} >
-    //     <Image source={{ uri: item.image }} style={styles.productImage} />
-    //     <View style={styles.titlegeral}>
-    //     <Text style={styles.productTitle}>{item.nome}</Text>
-    //     <Text style={styles.productPrice}>{item.price}</Text>
-    //     </View>
-    //   </TouchableOpacity>
-//     <View>
-//       {camisetas.map((camiseta) => (
-//         <Text key={camiseta.id}>{camiseta.nome}</Text>
-//       ))}
-//     </View>
-//   );
-
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.carouselTitle}>Novos Produtos</Text>
-//       {/* <Carousel
-//         data={products}
-//         renderItem={renderItem}
-//         sliderWidth={Dimensions.get("window").width}
-//         itemWidth={210}
-//         loop={true}
-//       /> */}
-//     </View>
-//   );
-// };
-
-
-function ProductCarousel({navigation}) {
+function ProductCarousel({ navigation }) {
   const [camisetas, setCamisetas] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const data = axios.get("https://19bf-191-52-62-47.ngrok-free.app/api/camisetas/").then((res) => {
-        console.log(res.data)
-        setCamisetas(res.data)
-      }).catch((err) => {
-        console.log(err)
-      })
+      const data = axios
+        .get("https://projetos-projeto-pi-x10k-dev.fl0.io/api/camisetas/")
+        .then((res) => {
+          console.log(res.data);
+          setCamisetas(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     fetchData();
   }, []);
 
   return (
-    <View>
-        {
-          camisetas.map((camiseta) => (
-            <View style={styles.productCard}>
-      <TouchableOpacity
-        style={styles.brandItem}
-        onPress={() =>
-          navigation.navigate("ProductDetails", {
-            id: camiseta.id, title: camiseta.nome, price: camiseta.valor,image: camiseta.image,})} >
+    <View  style={styles.container}>
 
-
-        <Image source={{ uri: 'https://cdn.awsli.com.br/600x450/1792/1792584/produto/209866230/tee_kidz_navy_yellow-nacwagf5tr.jpg' }} style={styles.productImage} />
-        <View style={styles.titlegeral}>
-        <Text style={styles.productTitle}>{camiseta.nome}</Text>
-        <Text style={styles.productPrice}>{camiseta.valor}</Text>
+    <Carousel
+      data={camisetas}
+      renderItem={({ item }) => (
+        <View style={styles.productCard}>
+          <TouchableOpacity
+            style={styles.brandItem}
+            onPress={() =>
+              navigation.navigate("ProductDetails", {
+                id: item.id,
+                title: item.nome,
+                price: item.valor,
+                image: item.image,
+                descricao: item.descricao
+              })
+            }
+            >
+            <Image
+              source={{
+                uri: item.image,
+              }}
+              style={styles.productImage}
+              />
+            <Image
+              source={{
+                uri: "https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274",
+              }}
+              style={styles.productImage}
+              />
+            <View style={styles.titlegeral}>
+              <Text style={styles.productTitle}>{item.nome}</Text>
+              <Text style={styles.productPrice}>{item.valor}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      )}
+      sliderWidth={Dimensions.get("window").width}
+      itemWidth={220}
+      // loop={true}
+      />
       </View>
-          )
-          )
-        }
-    </View>
-  )
+  );
 }
-
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: -20,
+    height: 280,
   },
   carouselTitle: {
     fontSize: 18,
@@ -141,27 +91,25 @@ const styles = StyleSheet.create({
   productCard: {
     backgroundColor: "#fff",
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    height: 240,
+    height: 110,
   },
   productImage: {
-    width: 300,
-    width: 200,
+    width: 210,
     height: 180,
   },
 
   titlegeral: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 
   productTitle: {
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 5,
-    
   },
   productPrice: {
     fontSize: 14,
