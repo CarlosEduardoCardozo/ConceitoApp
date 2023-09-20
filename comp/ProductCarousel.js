@@ -46,7 +46,8 @@ function ProductCarousel({ navigation }) {
                 title: item.nome,
                 price: item.valor,
                 image: item.image,
-                descricao: item.descricao
+                descricao: item.descricao,
+                tamanho: item.tamanho
               })
             }
             >
