@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
-// import ProductDetailsScreen from './ProductDetailsScreen';
 
 import camisetaService from "../src/services/camisetas.js";
 
@@ -18,63 +17,57 @@ function ProductCarousel({ navigation }) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = axios
-        .get("https://projetos-projeto-pi-x10k-dev.fl0.io/api/camisetas/")
-        .then((res) => {
-          console.log(res.data);
-          setCamisetas(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        const res = await axios.get(
+          "https://projetos-projeto-pi-x10k-dev.fl0.io/api/camisetas/"
+        );
+        setCamisetas(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
     fetchData();
   }, []);
 
   return (
-    <View  style={styles.container}>
-
-    <Carousel
-      data={camisetas}
-      renderItem={({ item }) => (
-        <View style={styles.productCard}>
-          <TouchableOpacity
-            style={styles.brandItem}
-            onPress={() =>
-              navigation.navigate("ProductDetails", {
-                id: item.id,
-                title: item.nome,
-                price: item.valor,
-                image: item.image,
-                descricao: item.descricao,
-                tamanho: item.tamanho
-              })
-            }
+    <View style={styles.container}>
+      <Carousel
+        data={camisetas}
+        renderItem={({ item }) => (
+          <View style={styles.productCard}>
+            <TouchableOpacity
+              style={styles.brandItem}
+              onPress={() =>
+                navigation.navigate("ProductDetails", {
+                  id: item.id,
+                  title: item.nome,
+                  price: item.valor,
+                  image: item.image,
+                  descricao: item.descricao,
+                  tamanho: item.tamanho,
+                  capa: item.capa.url,
+                })
+              }
             >
-            <Image
-              source={{
-                uri: item.image,
-              }}
-              style={styles.productImage}
+              <Image
+                source={{
+                  uri: item.capa.url,
+                }}
+                style={styles.productImage}
               />
-            <Image
-              source={{
-                uri: "https://cdn.vnda.com.br/matrizskate/2023/04/13/21_4_4_425_Tee_Kidz_Black_NightGreen.jpg?v=1681431274",
-              }}
-              style={styles.productImage}
-              />
-            <View style={styles.titlegeral}>
-              <Text style={styles.productTitle}>{item.nome}</Text>
-              <Text style={styles.productPrice}>{item.valor}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      )}
-      sliderWidth={Dimensions.get("window").width}
-      itemWidth={220}
-      // loop={true}
+            
+              <View style={styles.titlegeral}>
+                <Text style={styles.productTitle}>{item.nome}</Text>
+                <Text style={styles.productPrice}>{item.valor}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
+        sliderWidth={Dimensions.get("window").width}
+        itemWidth={220}
+        // loop={true}
       />
-      </View>
+    </View>
   );
 }
 
@@ -83,12 +76,6 @@ const styles = StyleSheet.create({
     marginTop: -20,
     height: 280,
   },
-  carouselTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-
   productCard: {
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -98,15 +85,18 @@ const styles = StyleSheet.create({
     height: 110,
   },
   productImage: {
+    marginTop: 180,
     width: 210,
     height: 180,
   },
-
+  coverImage: {
+    width: 210, // You can adjust the width and height as needed
+    height: 180, // to fit the cover image size
+  },
   titlegeral: {
     alignItems: "center",
     justifyContent: "center",
   },
-
   productTitle: {
     fontSize: 16,
     fontWeight: "bold",
@@ -115,11 +105,6 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 14,
     color: "#888",
-  },
-  carouselTitle: {
-    fontSize: 20,
-    fontWeight: "900",
-    padding: 15,
   },
 });
 
