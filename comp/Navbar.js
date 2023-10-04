@@ -9,7 +9,7 @@ const Navbar = () => {
                 <Text>Promo</Text>
             </TouchableOpacity>
             
-            <Image source={{ uri: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/464/778/themes/common/logo-868878082-1638638494-3a1796a954d3b24c1c03753cb754947e1638638494.png?0' }} style={{ width: 100, height: 50 }} />
+            <Image source={{ uri: 'https://cdn.discordapp.com/attachments/976322101818560562/1158913896795623505/logo.png?ex=651dfa2c&is=651ca8ac&hm=14a7268314f50c22520bfcf135d86bfa43f2a048cad5649b27d23dabb0c9d6c8&' }} style={{ width: 130, height: 50 }} />
 
             <TouchableOpacity style={styles.link}>
                 <Text>Login</Text>

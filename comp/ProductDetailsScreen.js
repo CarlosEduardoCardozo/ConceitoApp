@@ -3,18 +3,14 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import Navbar from "./Navbar";
 
 const ProductDetailsScreen = ({ route }) => {
-  const { title, price, image, descricao, tamanho } = route.params;
+  const { title, price, descricao, tamanho, capa } = route.params;
 
   return (
     <View>
       <Navbar />
       <View style={styles.container}>
-        <Image
-          source={{
-            uri: "https://cdn.awsli.com.br/600x700/1347/1347698/produto/216661678/csioandreasi-45-6pwqfmdwp4.png",
-          }}
-          style={styles.image}
-        />
+      <Image source={{ uri: capa}} style={styles.image}/>
+
         <View style={styles.info}>
             <Text style={styles.title}>{title}</Text>
           <View style={{alignSelf: 'center'}}>

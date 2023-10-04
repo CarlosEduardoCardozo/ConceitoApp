@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  ScrollView,
   TouchableOpacity,
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
@@ -49,13 +50,7 @@ function ProductCarousel({ navigation }) {
                 })
               }
             >
-              <Image
-                source={{
-                  uri: item.capa.url,
-                }}
-                style={styles.productImage}
-              />
-            
+              <Image source={{ uri: item.capa.url }} style={styles.productImage}/>
               <View style={styles.titlegeral}>
                 <Text style={styles.productTitle}>{item.nome}</Text>
                 <Text style={styles.productPrice}>{item.valor}</Text>
@@ -65,7 +60,7 @@ function ProductCarousel({ navigation }) {
         )}
         sliderWidth={Dimensions.get("window").width}
         itemWidth={220}
-        // loop={true}
+        loop={true}
       />
     </View>
   );
@@ -73,21 +68,19 @@ function ProductCarousel({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -20,
     height: 280,
   },
   productCard: {
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f8f8",
     borderRadius: 10,
-    padding: 10,
+    padding: 15,
     alignItems: "center",
     justifyContent: "center",
-    height: 110,
+    height: 280,
   },
   productImage: {
-    marginTop: 180,
     width: 210,
-    height: 180,
+    height: 210,
   },
   coverImage: {
     width: 210, // You can adjust the width and height as needed
