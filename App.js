@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
         <CardImgPromo/>
         <ProductCarousel navigation={navigation} />
         <BrandCarousel />
-        <CardProduct />
+        <CardProduct navigation={navigation}/>
       </ScrollView>
     </View>
   );

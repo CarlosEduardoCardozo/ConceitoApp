@@ -47,7 +47,7 @@ function ProductCarousel({ navigation }) {
     async function fetchData() {
       try {
         const res = await axios.get(
-          "https://projetos-projeto-pi-x10k-dev.fl0.io/api/camisetas/"
+          "https://conceito-street.1.us-1.fl0.io/api/camisetas/"
         );
         const shuffledCamisetas = [...res.data];
         shuffleArray(shuffledCamisetas);
