@@ -1,3 +1,5 @@
+// Navbar.js
+
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Image } from 'react-native';
@@ -7,13 +9,16 @@ const Navbar = () => {
   const navigation = useNavigation();
 
   const goToLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate('LoginComp'); // Alterado para 'PromoComp'
+  };
+  const goToPerfil = () => {
+    navigation.navigate('PerfilComp'); // Alterado para 'PromoComp'
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.link}>
-        <Text>Promo</Text>
+      <TouchableOpacity style={styles.link} onPress={goToLogin}>
+        <Text>Login</Text>  
       </TouchableOpacity>
 
       <Image
@@ -23,8 +28,8 @@ const Navbar = () => {
         style={{ width: 130, height: 50 }}
       />
 
-      <TouchableOpacity style={styles.link} onPress={goToLogin}>
-        <Text>Login</Text>
+      <TouchableOpacity style={styles.link} onPress={goToPerfil} >
+        <Text>Perfil</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,7 +42,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 120,
     marginTop: 50,
-    // backgroundColor: '#f0f0f0',
   },
   link: {
     marginHorizontal: 10,
